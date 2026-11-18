@@ -1,0 +1,5 @@
+# Project slugs (filename in _projects/, no extension) considered finished.
+# These are the only ones that DON'T get the "under construction" banner.
+# Used by _layouts/main.html (project page) and index.html (homepage tile).
+# Add a slug here once its page has photos and a full write-up.
+[]

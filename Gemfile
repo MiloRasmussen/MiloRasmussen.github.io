@@ -8,3 +8,8 @@ gem "tzinfo-data"
 gem "wdm", ">= 0.2.0" if Gem.win_platform?
 # Ruby 3.0+ no longer bundles the web server jekyll serve needs
 gem "webrick"
+
+group :jekyll_plugins do
+  gem "jekyll-sitemap"
+  gem "jemoji"
+end

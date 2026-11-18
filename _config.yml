@@ -1,9 +1,36 @@
-title: Milo Rasmussen
-description: Personal website (under construction)
-url: "https://milorasmussen.github.io"
+# Site settings
+title: "Milo Rasmussen"
+description: >-
+  Portfolio of Milo Rasmussen, mechanical engineering student at the
+  University of Central Florida: CAD, CFD, and manufacturing projects.
+permalink: ':title/'
 baseurl: ""
+url: "https://milorasmussen.github.io"
 
+# Author settings (shown in the sidebar on every page)
+author: Milo Rasmussen
+author-img: avatar.svg          # file in assets/img/; swap for a real photo later
+about-author: "Mechanical engineering student at the University of Central Florida. I design parts in CAD, simulate airflow with CFD, and build things on the shop floor."
+# Contact icons only appear for the fields that are filled in
+social-github: MiloRasmussen
+social-linkedin: "milo-rasmussen"   # the part after linkedin.com/in/
+social-email: "miloras@outlook.com"
+social-phone: ""                # digits only; the link adds +1
+
+# Analytics: GoatCounter site code (dashboard: https://milorasmussen.goatcounter.com).
+# Leave blank to disable tracking.
+goatcounter-code: "milorasmussen"
+
+# Build settings
 markdown: kramdown
+remote_theme: artemsheludko/flexible-jekyll
+
+include:
+  - _pages
+
+plugins:
+  - jekyll-sitemap
+  - jemoji
 
 # Files in the repo that should NOT be published as pages
 exclude:
@@ -13,3 +40,20 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor
+
+collections:
+  projects:
+    output: true
+    permalink: /projects/:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: main
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: main

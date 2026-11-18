@@ -1,16 +1,24 @@
 ---
+layout: main
 ---
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ site.title }}</title>
-  <meta name="description" content="{{ site.description }}">
-</head>
-<body style="font-family: system-ui, sans-serif; max-width: 40rem; margin: 4rem auto; padding: 0 16px;">
-  <h1>{{ site.title }}</h1>
-  <p>Site coming soon.</p>
-  <p><small>Built by Jekyll on {{ site.time | date: "%Y-%m-%d %H:%M" }}</small></p>
-</body>
-</html>
+{% comment %}
+  Homepage: one tile per file in _projects/, sorted by each file's `order`.
+{% endcomment %}
+{% assign projects = site.projects | sort: 'order' %}
+{% for project in projects %}
+<article class="post">
+  {% if project.img %}
+    <a class="post-thumbnail" style="background-image: url({{ "/assets/img/projects/" | prepend: site.baseurl | append: project.img }}); background-position: {{ project.img-position | default: "50% 50%" }};" href="{{ project.url | prepend: site.baseurl }}" aria-label="{{ project.title }}"></a>
+  {% endif %}
+  <div class="post-content">
+    <h2 class="post-title"><a href="{{ project.url | prepend: site.baseurl }}">{{ project.title }}</a></h2>
+    <p>{{ project.excerpt | strip_html }}</p>
+    {% unless site.data.finished_projects contains project.slug %}
+      {% include construction-banner.html %}
+    {% endunless %}
+    {% if project.completed %}
+      <span class="post-date">{{ project.completed }}</span>
+    {% endif %}
+  </div>
+</article>
+{% endfor %}
