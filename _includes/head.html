@@ -95,6 +95,8 @@
 	     https://{{ site.goatcounter-code }}.goatcounter.com, see CLAUDE.md "Analytics" -->
 	<script data-goatcounter="https://{{ site.goatcounter-code }}.goatcounter.com/count"
 	        async src="//gc.zgo.at/count.js"></script>
+	<!-- Logs how long each page was viewed, as bracketed events -->
+	<script src="{{ "/assets/js/time-on-page.js" | prepend: site.baseurl }}" defer></script>
 	<script>
 		document.addEventListener('click', function (e) {
 			var a = e.target.closest('a');
