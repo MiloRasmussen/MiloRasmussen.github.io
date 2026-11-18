@@ -1,0 +1,15 @@
+title: Milo Rasmussen
+description: Personal website (under construction)
+url: "https://milorasmussen.github.io"
+baseurl: ""
+
+markdown: kramdown
+
+# Files in the repo that should NOT be published as pages
+exclude:
+  - new-website-CLAUDE.md
+  - CLAUDE.md
+  - install.cmd
+  - Gemfile
+  - Gemfile.lock
+  - vendor
