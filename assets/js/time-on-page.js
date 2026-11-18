@@ -11,9 +11,10 @@
 //   tab starts its clock when it is first shown.
 // - Sent once per page view, on the first time the page is hidden.
 //   Coming back and leaving again doesn't send a second event.
-// - Uses navigator.sendBeacon so the request survives the page closing.
-//   goatcounter.url() returns nothing on localhost or when this browser
-//   was excluded with #toggle-goatcounter, so those visits aren't logged.
+// - goatcounter.count() sends with navigator.sendBeacon, so the request
+//   survives the page closing, and it skips localhost and browsers excluded
+//   with #toggle-goatcounter. (Don't build the URL with goatcounter.url()
+//   and send it yourself: url() does NOT apply those filters.)
 // - Phones sometimes kill tabs without warning, so some visits never report.
 (function () {
 	var BRACKETS = [
@@ -39,17 +40,11 @@
 		sent = true;
 		var seconds = (performance.now() - start) / 1000;
 		var label = bracket(seconds);
-		var vars = {
+		window.goatcounter.count({
 			path: 'time: ' + location.pathname + ' · ' + label,
 			title: label + ' on ' + document.title,
 			event: true
-		};
-		var url = window.goatcounter.url && window.goatcounter.url(vars);
-		if (url && navigator.sendBeacon) {
-			navigator.sendBeacon(url);
-		} else if (url) {
-			window.goatcounter.count(vars);
-		}
+		});
 	}
 
 	document.addEventListener('visibilitychange', function () {
